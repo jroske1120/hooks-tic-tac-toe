@@ -1,50 +1,51 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-function Square({number}) {
-  const [value, setValue] = useState('')
+function Square({ value, onClick }) {
   return (
-    <button 
-    className="square" 
-    onClick={() => setValue('X')}
-    >
+    <button className="square" onClick={onClick}>
       {value}
     </button>
   );
 }
 
-function Board () {
+function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
   function renderSquare(i) {
     return (
       <Square
-        value={props.squares[i]}
-        onClick={() => props.onClick(i)}
+        value={squares[i]}
+        onClick={() => {
+          const nextSquares = squares.slice()
+          nextSquares[i] = 'X';
+          setSquares(nextSquares);
+        }}
       />
     );
   }
 
-    return (
-      <div>
-        <div className="board-row">
-          {renderSquare(0)}
-          {renderSquare(1)}
-          {renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {renderSquare(3)}
-          {renderSquare(4)}
-          {renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {renderSquare(6)}
-          {renderSquare(7)}
-          {renderSquare(8)}
-        </div>
+  return (
+    <div>
+      <div className="board-row">
+        {renderSquare(0)}
+        {renderSquare(1)}
+        {renderSquare(2)}
       </div>
-    );
-  }
-
+      <div className="board-row">
+        {renderSquare(3)}
+        {renderSquare(4)}
+        {renderSquare(5)}
+      </div>
+      <div className="board-row">
+        {renderSquare(6)}
+        {renderSquare(7)}
+        {renderSquare(8)}
+      </div>
+    </div>
+  );
+}
 
 class Game extends React.Component {
   constructor(props) {
