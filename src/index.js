@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+//Square 
 function Square({ value, onClick }) {
   return (
     <button className="square" onClick={onClick}>
@@ -10,16 +11,18 @@ function Square({ value, onClick }) {
   );
 }
 
+//Board
 function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
-
+  const [isXNext, setXNext] = useState(true);
   function renderSquare(i) {
     return (
       <Square
         value={squares[i]}
         onClick={() => {
-          const nextSquares = squares.slice()
-          nextSquares[i] = 'X';
+          const nextSquares = squares.slice();
+          nextSquares[i] = isXNext ? 'X' : 'O'
+          setXNext(!isXNext)
           setSquares(nextSquares);
         }}
       />
@@ -47,7 +50,7 @@ function Board() {
   );
 }
 
-class Game extends React.Component {
+function Game () {
   constructor(props) {
     super(props);
     this.state = {
@@ -86,8 +89,6 @@ class Game extends React.Component {
       xIsNext: step % 2 === 0,
     });
   }
-
-  render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
@@ -121,7 +122,6 @@ class Game extends React.Component {
         </div>
       </div>
     );
-  }
 }
 
 function calculateWinner(squares) {
