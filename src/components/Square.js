@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
 
+const styles = {
+  background: "lightblue",
+  border: "2px solid black",
+  fontSize: "30px",
+  fontWeight: "800",
+  cursor: "pointer",
+  outline: "none",
+};
 
 const Square = ({ value, onClick }) => (
-<button className="square" onClick={onClick}>
-      {value}
-    </button>
-    )
+  <button styles={styles} onClick={onClick}>
+    {value}
+  </button>
+);
 
 export default Square;
