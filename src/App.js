@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import Game from './components/Game';
+import React from "react";
+import Game from 'src/components/Game.js';
 
 const App = () => <div><Game /></div>
 
