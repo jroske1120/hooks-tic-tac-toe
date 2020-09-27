@@ -1,11 +1,9 @@
-import React, { 
-    // useState
- } from "react";
-import Square from "./Square";
+import React from "react";
+import Square from "./Square.js";
 
-const styles = {
-  border: "4px solid black",
-  borderRadius: "10px",
+const style = {
+  border: '4px solid black',
+  borderRadius: '10px',
   width: "250px",
   height: "250px",
   margin: "0 auto",
@@ -14,7 +12,8 @@ const styles = {
 };
 
 const Board = ({ squares, onClick }) => (
-  <div styles={styles}>
+    
+  <div style={style}>
     {squares.map((square, i) => (
       <Square
         key={i}
